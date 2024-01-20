@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block content %}
+<main class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h1 class="fs-2 mt-3">
+        Task: <span class="text-secondary fs-3">{{task.title}}</span>
+      </h1>
+      <p class="fs-5">
+        Status:
+        <span class="fs-5 text-"
+          >{% if task.datecompleted %} Completed {% else %} Incomplete {% endif %}</span
+        >
+      </p>
+      <form action="" method="POST" class="card card-body shadow">
+        <!-- inicio alerta -->
+        <div class="text-danger text-center fs-5 fw-bolder">{{error}}</div>
+        <!-- fin alerta -->
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-warning">Update</button>
+      </form>
+      <h2 class="fs-4 text-primary mt-3 mb-3">More options:</h2>
+      <section class="card card-body mb-5">
+        <div class="d-flex justify-content-between mt-3">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+          <i class="bi bi-trash3"></i> Delete task
+          </button>
+          <!-- Modal delete task -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-4 text-danger fw-bold" id="exampleModalLabel">
+                    Alert
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p class="fs-5">
+                    You are sure to delete this task, if you do so you will not
+                    be able to recover it.
+                  </p>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <form action="{% url 'delete_task' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Yes, delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end Modal delete task -->
+
+          <form action="{% url 'task_complete' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-success"><i class="bi bi-clipboard-check"></i> completed</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="container">
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <section class="card card-body mt-5 shadow">
+            <h1 class="text-center text-secondary fs-3 fw-bolder">My profile</h1>
+            <!-- <p>Nombre: {{user.first_name}}</p>
+            <p>Apellido: {{user.last_name}}</p> -->
+            <p class="fs-5">username: {{user.username}}</p>
+            <p class="fs-5">Email: {% if user.email %} {{user.email}} {% else %} You do not have a registered email address yet {% endif %}</p>
+        </section>
+      </div>
+    </div>
+  </main>
+{% endblock %}
