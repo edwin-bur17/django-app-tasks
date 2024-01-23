@@ -17,8 +17,8 @@
           </header>
           <p>{{task.description|truncatechars:100}}</p>
 
-          <p>{{task.datecompleted|date:'l d F Y:g h i a'}}</p>
-          <p>Creada el: {{task.created|date:'l d F Y'}}</p>
+          <p>Completada el: {{task.datecompleted|date:'l d F Y: h i a'}}</p>
+          <p>Creada el: {{task.created|date:'l d F Y: h i a'}}</p>
         </a>
         {% empty %}
         <div class="badge bg-warning">
