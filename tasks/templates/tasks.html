@@ -15,10 +15,10 @@
             <p>{{task.user.username}}</p>
             {% endif %}
           </header>
-          <p>{{task.description}}</p>
+          <p>{{task.description|truncatechars:100}}</p>
 
-          <p>{{task.datecompleted|date:'M j Y:i'}}</p>
-          <p>Creada el: {{task.created}}</p>
+          <p>{{task.datecompleted|date:'l d F Y:g h i a'}}</p>
+          <p>Creada el: {{task.created|date:'l d F Y'}}</p>
         </a>
         {% empty %}
         <div class="badge bg-warning">
